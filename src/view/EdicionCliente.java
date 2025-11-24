@@ -15,7 +15,7 @@ public class EdicionCliente extends javax.swing.JFrame {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(EdicionCliente.class.getName());
 
     ArrayList<Cliente> listaClientes;
-    String nombreTemporal = "";
+    String nombreTemp = "";
     
     /**
      * Creates new form editarCliente
@@ -211,7 +211,7 @@ public class EdicionCliente extends javax.swing.JFrame {
     private void elComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_elComboBoxActionPerformed
         // TODO add your handling code here:
         String selec = elComboBox.getSelectedItem().toString();
-        nombreTemporal = selec;
+        nombreTemp = selec;
         var a = listaClientes.stream().filter(p->p.getNombre().equalsIgnoreCase(selec)).findFirst().orElse(null);
         if (a != null){
             tfNombre.setText(a.getNombre());
@@ -224,14 +224,14 @@ public class EdicionCliente extends javax.swing.JFrame {
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         // TODO add your handling code here:
-        var a = listaClientes.stream().filter(p->p.getNombre().equalsIgnoreCase(nombreTemporal)).findFirst().orElse(null);
+        var a = listaClientes.stream().filter(p->p.getNombre().equalsIgnoreCase(nombreTemp)).findFirst().orElse(null);
         if (a != null){
             a.setNombre(tfNombre.getText());
             a.setApellido(tfApellido.getText());
             a.setDNI(tfDNI.getText());
             a.setTelefono(tfTelefono.getText());
             a.setEmail(tfEmail.getText());
-            JOptionPane.showMessageDialog(this, nombreTemporal+" fue actualizado");
+            JOptionPane.showMessageDialog(this, nombreTemp+" fue actualizado");
             dispose();
         }
         else{
