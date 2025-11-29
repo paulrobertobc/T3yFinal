@@ -23,14 +23,14 @@ public class Controller{
     public ArrayList<Cliente> listaClientes;
     public ArrayList<Empleado> listaMeseros;
     public ArrayList<Empleado> listaCocineros;
-    public ArrayList<Empleado> listaCajero;
+    public ArrayList<Empleado> listaCajeros;
     public ArrayList<Venta> listaVenta;
 
     public Controller() {
         this.listaClientes = new ArrayList<>();
         this.listaMeseros = new ArrayList<>();
         this.listaCocineros = new ArrayList<>();
-        this.listaCajero = new ArrayList<>();
+        this.listaCajeros = new ArrayList<>();
         this.listaVenta = new ArrayList<>();
         listaClientes.add(new Cliente("Perico", "de los palotes", "68635652", "987546324","perico@gmail.com"));
         listaClientes.add(new Cliente("Fulano", "de tal", "68634652", "987546324","fulano@gmail.com"));
@@ -41,9 +41,9 @@ public class Controller{
         listaMeseros.add(new Empleado(900, "Mesero","Homero", "de la iliada", "68634565", "987546324","homero_iliada@gmail.com"));
         listaMeseros.add(new Empleado(3000,"Mesero","Adam Paul", "B C", "68634565", "987546324","adampaul@gmail.com"));
         listaMeseros.add(new Empleado(3000,"Mesero","Lalo", "embalo", "68634565", "987546324","lalobalo@gmail.com"));
-        listaCajero.add(new Empleado(1024, "Cajero","Lucho", "barrios", "68634565", "987546324","lucho_b@gmail.com"));
-        listaCajero.add(new Empleado(1024, "Cajero","Reyna", "escalante", "68634565", "987546324","reyna_lante@gmail.com"));
-        listaCajero.add(new Empleado(1024, "Cajero","Lucia", "merlina", "68634565", "987546324","luchaMer_b@gmail.com"));
+        listaCajeros.add(new Empleado(1024, "Cajero","Lucho", "barrios", "68634565", "987546324","lucho_b@gmail.com"));
+        listaCajeros.add(new Empleado(1024, "Cajero","Reyna", "escalante", "68634565", "987546324","reyna_lante@gmail.com"));
+        listaCajeros.add(new Empleado(1024, "Cajero","Lucia", "merlina", "68634565", "987546324","luchaMer_b@gmail.com"));
     }
     public void exportarHistorialVentas() {
         if (listaVenta == null || listaVenta.isEmpty()) {
@@ -88,7 +88,7 @@ public class Controller{
         ArrayList<Empleado> todos = new ArrayList<>();
         todos.addAll(listaMeseros);
         todos.addAll(listaCocineros);
-        todos.addAll(listaCajero);
+        todos.addAll(listaCajeros);
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setDialogTitle("Guardar empleados");
         int seleccion = fileChooser.showSaveDialog(null);
@@ -140,7 +140,7 @@ public class Controller{
                                 break;
                             case "cajero":
                             case "cajeros":
-                                listaCajero.add(emp);
+                                listaCajeros.add(emp);
                                 break;
                             default:
                                 System.out.println("Tipo desconocido: " + emp.getTipo());
@@ -166,7 +166,7 @@ public class Controller{
         listaCocineros.add(e);
     }
     public void agregarAlistaCajeros(Empleado e){
-        listaCajero.add(e);
+        listaCajeros.add(e);
     }
     public void agregarAlistaVenta(Venta e){
         listaVenta.add(e);

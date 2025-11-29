@@ -53,8 +53,8 @@ public class RegistroVenta extends javax.swing.JFrame {
         this.mesero = contro.listaMeseros.get(ran);
         lbAtendidoAntes.setText("** Usted estuvo en la mesa "+(rnd.nextInt(10)+1));
         lbAtendido1.setText("Fue atendid@ por "+mesero.getNombre()+", cocinó para");
-        int ran2 = rnd.nextInt(contro.listaCajero.size());
-        this.cajero = contro.listaCajero.get(ran2);
+        int ran2 = rnd.nextInt(contro.listaCajeros.size());
+        this.cajero = contro.listaCajeros.get(ran2);
         int ran3 = rnd.nextInt(contro.listaCocineros.size());
         this.cocinero = contro.listaCocineros.get(ran3);
         lbAtendido2.setText("usted "+cocinero.getNombre()+" y pagó en el cajero de "+cajero.getNombre()+" **");
