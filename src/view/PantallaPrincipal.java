@@ -306,7 +306,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
 
     private void btnEditarEmpleadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditarEmpleadoMouseClicked
         // TODO add your handling code here:
-        EdicionEmpleado ee = new EdicionEmpleado(this, controlador.listaMeseros, controlador.listaCocineros, controlador.listaCajeros);
+        EdicionEmpleado ee = new EdicionEmpleado(this, controlador.listaMeseros, controlador.listaCocineros, controlador.listaCajero);
         ee.setVisible(true);
     }//GEN-LAST:event_btnEditarEmpleadoMouseClicked
 
@@ -365,7 +365,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         for(Empleado e : controlador.listaMeseros){
             modelo3.addRow(new Object[]{e.getTipo(),e.getSueldo(),e.getNombre(), e.getApellido(), e.getDNI(), e.getEmail(), e.getTelefono(), e.getAtendidos()});
         }
-        for (Empleado e : controlador.listaCajeros){
+        for (Empleado e : controlador.listaCajero){
             modelo3.addRow(new Object[]{e.getTipo(),e.getSueldo(), e.getNombre(), e.getApellido(), e.getDNI(), e.getEmail(), e.getTelefono(), e.getAtendidos()});
         }
         for(Empleado e : controlador.listaCocineros){
