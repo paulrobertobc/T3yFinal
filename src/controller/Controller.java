@@ -24,14 +24,14 @@ public class Controller{
     public ArrayList<Empleado> listaMeseros;
     public ArrayList<Empleado> listaCocineros;
     public ArrayList<Empleado> listaCajeros;
-    public ArrayList<Venta> listaVentas;
+    public ArrayList<Venta> listaVenta;
 
     public Controller() {
         this.listaClientes = new ArrayList<>();
         this.listaMeseros = new ArrayList<>();
         this.listaCocineros = new ArrayList<>();
         this.listaCajeros = new ArrayList<>();
-        this.listaVentas = new ArrayList<>();
+        this.listaVenta = new ArrayList<>();
         listaClientes.add(new Cliente("Perico", "de los palotes", "68635652", "987546324","perico@gmail.com"));
         listaClientes.add(new Cliente("Fulano", "de tal", "68634652", "987546324","fulano@gmail.com"));
         listaClientes.add(new Cliente("Anita", "la huerfanita", "68634562", "987546324","huerfanita@gmail.com"));
@@ -46,7 +46,7 @@ public class Controller{
         listaCajeros.add(new Empleado(1024, "Cajero","Lucia", "merlina", "68634565", "987546324","luchaMer_b@gmail.com"));
     }
     public void exportarHistorialVentas() {
-        if (listaVentas == null || listaVentas.isEmpty()) {
+        if (listaVenta == null || listaVenta.isEmpty()) {
             JOptionPane.showMessageDialog(null, "No hay ventas registradas para exportar.");
             return;
         }
@@ -63,7 +63,7 @@ public class Controller{
                 writer.write("===== HISTORIAL DE VENTAS =====");
                 writer.newLine();
                 writer.newLine();
-                for (Venta venta : listaVentas) {
+                for (Venta venta : listaVenta) {
                     writer.write("Fecha: " + venta.getFecha().format(formatoFecha));
                     writer.newLine();
                     writer.write("Productos:");
@@ -169,6 +169,6 @@ public class Controller{
         listaCajeros.add(e);
     }
     public void agregarAlistaVenta(Venta e){
-        listaVentas.add(e);
+        listaVenta.add(e);
     }
 }

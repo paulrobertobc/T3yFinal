@@ -276,7 +276,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
 
     private void btnHistorialMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHistorialMouseClicked
         // TODO add your handling code here:
-        PantallaHistorial his = new PantallaHistorial(controlador.listaVentas);
+        PantallaHistorial his = new PantallaHistorial(controlador.listaVenta);
         his.setVisible(true);
     }//GEN-LAST:event_btnHistorialMouseClicked
 
@@ -333,7 +333,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
 
     private void btnExportarHistorialMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExportarHistorialMouseClicked
         // TODO add your handling code here:
-        if (controlador.listaVentas.isEmpty() || controlador.listaVentas == null){
+        if (controlador.listaVenta.isEmpty() || controlador.listaVenta == null){
             JOptionPane.showMessageDialog(null, "Historial de ventas vacio.");
             return;
         }
