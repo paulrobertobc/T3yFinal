@@ -20,22 +20,22 @@ import model.Venta;
  * @author PAUL
  */
 public class Controller{
-    public ArrayList<Cliente> listaClientess;
+    public ArrayList<Cliente> listaClientes;
     public ArrayList<Empleado> listaMeseros;
     public ArrayList<Empleado> listaCocineros;
     public ArrayList<Empleado> listaCajeros;
     public ArrayList<Venta> listaVenta;
 
     public Controller() {
-        this.listaClientess = new ArrayList<>();
+        this.listaClientes = new ArrayList<>();
         this.listaMeseros = new ArrayList<>();
         this.listaCocineros = new ArrayList<>();
         this.listaCajeros = new ArrayList<>();
         this.listaVenta = new ArrayList<>();
-        listaClientess.add(new Cliente("Perico", "de los palotes", "68635652", "987546324","perico@gmail.com"));
-        listaClientess.add(new Cliente("Fulano", "de tal", "68634652", "987546324","fulano@gmail.com"));
-        listaClientess.add(new Cliente("Anita", "la huerfanita", "68634562", "987546324","huerfanita@gmail.com"));
-        listaClientess.add(new Cliente("Don", "nadie", "68634565", "987546324","don_nadie@gmail.com"));
+        listaClientes.add(new Cliente("Perico", "de los palotes", "68635652", "987546324","perico@gmail.com"));
+        listaClientes.add(new Cliente("Fulano", "de tal", "68634652", "987546324","fulano@gmail.com"));
+        listaClientes.add(new Cliente("Anita", "la huerfanita", "68634562", "987546324","huerfanita@gmail.com"));
+        listaClientes.add(new Cliente("Don", "nadie", "68634565", "987546324","don_nadie@gmail.com"));
         listaCocineros.add(new Empleado(1024, "Cocinero","Lelo", "garcía", "68634565", "987546324","lalo@gmail.com"));
         listaCocineros.add(new Empleado(1024, "Cocinero", "Merlo", "Rodriguez", "12345678", "987435675", "merloro@gmail.com"));
         listaMeseros.add(new Empleado(900, "Mesero","Homero", "de la iliada", "68634565", "987546324","homero_iliada@gmail.com"));
@@ -157,7 +157,7 @@ public class Controller{
         }
     }
     public void agregarAlistaCliente(Cliente e){
-        listaClientess.add(e);
+        listaClientes.add(e);
     }
     public void agregarAlistaMeseros(Empleado e){
         listaMeseros.add(e);
