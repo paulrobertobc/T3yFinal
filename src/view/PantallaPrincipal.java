@@ -288,7 +288,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
 
     private void btnEditarClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditarClienteMouseClicked
         // TODO add your handling code here:
-        EdicionCliente ec = new EdicionCliente(this, controlador.listaClientes);
+        EdicionCliente ec = new EdicionCliente(this, controlador.listaClientess);
         ec.setVisible(true);
     }//GEN-LAST:event_btnEditarClienteMouseClicked
 
@@ -356,7 +356,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         DefaultTableModel modelo3 = (DefaultTableModel)tablaEmpleados.getModel();
         modelo3.setRowCount(0);
         tablaEmpleados.setDefaultEditor(Object.class, null);
-        for (Cliente c : controlador.listaClientes){
+        for (Cliente c : controlador.listaClientess){
             modelo1.addRow(new Object[]{c.getNombre(), c.getApellido(), c.getDNI(), c.getEmail(), c.getTelefono(), c.total});
         }
         for(Producto p : elInventario.listaProductos){
