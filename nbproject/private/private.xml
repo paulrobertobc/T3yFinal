@@ -5,13 +5,14 @@
         <group>
             <file>file:/C:/Users/PAUL/Documents/NetBeansProjects/T3yFinal/src/view/PantallaPrincipal.java</file>
             <file>file:/C:/Users/PAUL/Documents/NetBeansProjects/T3yFinal/src/controller/Controller.java</file>
-            <file>file:/C:/Users/PAUL/Documents/NetBeansProjects/T3yFinal/src/database/ConexionSQL.java</file>
             <file>file:/C:/Users/PAUL/Documents/NetBeansProjects/T3yFinal/src/controller/ControllerSQL.java</file>
             <file>file:/C:/Users/PAUL/Documents/NetBeansProjects/T3yFinal/src/model/Cliente.java</file>
             <file>file:/C:/Users/PAUL/Documents/NetBeansProjects/T3yFinal/src/model/Persona.java</file>
             <file>file:/C:/Users/PAUL/Documents/NetBeansProjects/T3yFinal/src/model/Producto.java</file>
-            <file>file:/C:/Users/PAUL/Documents/NetBeansProjects/T3yFinal/src/view/PantallaRegistroProductos.java</file>
             <file>file:/C:/Users/PAUL/Documents/NetBeansProjects/T3yFinal/src/model/Inventario.java</file>
+            <file>file:/C:/Users/PAUL/Documents/NetBeansProjects/T3yFinal/src/view/RegistroVenta.java</file>
+            <file>file:/C:/Users/PAUL/Documents/NetBeansProjects/T3yFinal/src/model/Empleado.java</file>
+            <file>file:/C:/Users/PAUL/Documents/NetBeansProjects/T3yFinal/src/database/ConexionSQL.java</file>
         </group>
     </open-files>
 </project-private>
