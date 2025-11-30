@@ -14,13 +14,14 @@ public class Cliente extends Persona{
     public Cliente() {
     }
 
-    public Cliente(double total, String Nombre, String Apellido, String DNI, String Telefono, String Email) {
-        super(Nombre, Apellido, DNI, Telefono, Email);
+    public Cliente(int ID, double total, String Nombre, String Apellido, String DNI, String Telefono, String Email) {
+        super(ID,Nombre, Apellido, DNI, Telefono, Email);
         this.total = total;
     }
 
-    public Cliente(String Nombre, String Apellido, String DNI, String Telefono, String Email) {
-        super(Nombre, Apellido, DNI, Telefono, Email);
+    public Cliente(int ID, String Nombre, String Apellido, String DNI, String Telefono, String Email) {
+        super(ID, Nombre, Apellido, DNI, Telefono, Email);
+        this.total = 0;
     }
     
     public void agregarCompra(ArrayList<String> listaVenta) {

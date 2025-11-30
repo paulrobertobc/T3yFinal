@@ -14,12 +14,13 @@ public class Empleado extends Persona{
         atendidos = 0;
     }
 
-    public Empleado(double Sueldo, String Tipo, String Nombre, String Apellido, String DNI, String Telefono, String Email) {
-        super(Nombre, Apellido, DNI, Telefono, Email);
+    public Empleado(int ID, double Sueldo, String Tipo, String Nombre, String Apellido, String DNI, String Telefono, String Email) {
+        super(ID, Nombre, Apellido, DNI, Telefono, Email);
         this.Sueldo = Sueldo;
         this.Tipo = Tipo;
         atendidos = 0;
     }
+
     
     public double getSueldo() {
         return Sueldo;

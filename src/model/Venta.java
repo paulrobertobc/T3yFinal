@@ -20,9 +20,41 @@ public class Venta implements Comportamiento<ArrayList<String>>{
     private ArrayList<ArrayList<String>> lasVentas;
     public LocalDateTime fecha;
     public Cliente comprador;
+    public int ID;
 
     public Venta() {
         lasVentas = new ArrayList<>();
+    }
+
+    public Venta(int ID, ArrayList<String> listaVenta, LocalDateTime fecha, Cliente comprador) {
+        lasVentas.add(new ArrayList<>(listaVenta));
+        this.fecha = fecha;
+        this.comprador = comprador;
+        this.ID = ID;
+    }
+
+    public ArrayList<ArrayList<String>> getLasVentas() {
+        return lasVentas;
+    }
+
+    public void setLasVentas(ArrayList<ArrayList<String>> lasVentas) {
+        this.lasVentas = lasVentas;
+    }
+
+    public Cliente getComprador() {
+        return comprador;
+    }
+
+    public void setComprador(Cliente comprador) {
+        this.comprador = comprador;
+    }
+
+    public int getID() {
+        return ID;
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
     }
 
     public LocalDateTime getFecha() {
@@ -32,10 +64,11 @@ public class Venta implements Comportamiento<ArrayList<String>>{
     public void setFecha(LocalDateTime fecha) {
         this.fecha = fecha;
     }
-    public void agregarVentayFecha(ArrayList<String> listaVenta, LocalDateTime fecha, Cliente comprador){
+    public void agregarVentayFecha(int ID, ArrayList<String> listaVenta, LocalDateTime fecha, Cliente comprador){
         lasVentas.add(new ArrayList<>(listaVenta));
         this.fecha = fecha;
         this.comprador = comprador;
+        this.ID = ID;
     }
     public String getNombre(){
         return comprador.getNombre();

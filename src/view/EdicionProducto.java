@@ -15,8 +15,9 @@ public class EdicionProducto extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(EdicionProducto.class.getName());
 
-    public ArrayList<Producto> listaProductos;
-    String nombreTemporal = "";
+    private ArrayList<Producto> listaProductos;
+    private String nombreTemporal = "";
+    private PantallaPrincipal principal;
     
     /**
      * Creates new form editarProducto
@@ -25,6 +26,7 @@ public class EdicionProducto extends javax.swing.JFrame {
      */
     public EdicionProducto(PantallaPrincipal principal, ArrayList<Producto> listaProductos) {
         initComponents();
+        this.principal = principal;
         this.listaProductos = listaProductos;
         setLocationRelativeTo(null);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -72,6 +74,8 @@ public class EdicionProducto extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         elComboBox = new javax.swing.JComboBox<>();
         spinnerStock = new javax.swing.JSpinner();
+        jLabel7 = new javax.swing.JLabel();
+        tfID = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Editar");
@@ -114,6 +118,8 @@ public class EdicionProducto extends javax.swing.JFrame {
             }
         });
 
+        jLabel7.setText("ID");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -123,29 +129,30 @@ public class EdicionProducto extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(43, 43, 43)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel5))
-                        .addGap(57, 57, 57)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(tfNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
-                            .addComponent(tfCategoria)
-                            .addComponent(tfPrecio)
-                            .addComponent(spinnerStock, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addComponent(jLabel6))
-                            .addComponent(jLabel1)))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel5))
+                                .addGap(57, 57, 57)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(tfNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
+                                    .addComponent(tfCategoria)
+                                    .addComponent(tfPrecio)
+                                    .addComponent(spinnerStock, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(tfID)))
+                            .addComponent(jLabel6)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(65, 65, 65)
-                        .addComponent(elComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(97, 97, 97)
+                        .addComponent(btnEditar))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(95, 95, 95)
-                        .addComponent(btnEditar)))
+                        .addGap(56, 56, 56)
+                        .addComponent(jLabel1))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(75, 75, 75)
+                        .addComponent(elComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -169,13 +176,17 @@ public class EdicionProducto extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(tfPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(tfID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5)
                     .addComponent(spinnerStock, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnEditar)
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -204,6 +215,7 @@ public class EdicionProducto extends javax.swing.JFrame {
             Object temp = spinnerStock.getValue();
             int stock = Integer.parseInt(temp.toString());
             double precio = Double.parseDouble(tfPrecio.getText());
+            int id = Integer.parseInt(tfID.getText());
             if (stock < 1 || precio < 0){
                 JOptionPane.showMessageDialog(this, "Ingresa cantidades válidas.");
                 return;
@@ -214,7 +226,14 @@ public class EdicionProducto extends javax.swing.JFrame {
                 a.setCategoria(tfCategoria.getText());
                 a.setPrecio(precio);
                 a.setStock(stock);
+                a.setID(id);
                 JOptionPane.showMessageDialog(this, nombreTemporal+" fue actualizado");
+                this.addWindowListener(new java.awt.event.WindowAdapter() {
+                    @Override
+                    public void windowClosed(java.awt.event.WindowEvent e) {
+                        principal.notificaciones(4);
+                    }
+                });
                 dispose();
             }else{
                 JOptionPane.showMessageDialog(this, "No existe");
@@ -246,6 +265,8 @@ public class EdicionProducto extends javax.swing.JFrame {
             String precio = String.valueOf(a.getPrecio());
             tfPrecio.setText(precio);
             spinnerStock.setValue(a.getStock());
+            String id = String.valueOf(a.getID());
+            tfID.setText(id);
         }
     }//GEN-LAST:event_elComboBoxActionPerformed
 
@@ -262,9 +283,11 @@ public class EdicionProducto extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSpinner spinnerStock;
     private javax.swing.JTextField tfCategoria;
+    private javax.swing.JTextField tfID;
     private javax.swing.JTextField tfNombre;
     private javax.swing.JTextField tfPrecio;
     // End of variables declaration//GEN-END:variables

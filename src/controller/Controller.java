@@ -25,6 +25,7 @@ public class Controller{
     public ArrayList<Empleado> listaCocineros;
     public ArrayList<Empleado> listaCajeros;
     public ArrayList<Venta> listaVenta;
+    public double Capital;
 
     public Controller() {
         this.listaClientes = new ArrayList<>();
@@ -32,19 +33,50 @@ public class Controller{
         this.listaCocineros = new ArrayList<>();
         this.listaCajeros = new ArrayList<>();
         this.listaVenta = new ArrayList<>();
-        listaClientes.add(new Cliente("Perico", "de los palotes", "68635652", "987546324","perico@gmail.com"));
-        listaClientes.add(new Cliente("Fulano", "de tal", "68634652", "987546324","fulano@gmail.com"));
-        listaClientes.add(new Cliente("Anita", "la huerfanita", "68634562", "987546324","huerfanita@gmail.com"));
-        listaClientes.add(new Cliente("Don", "nadie", "68634565", "987546324","don_nadie@gmail.com"));
-        listaCocineros.add(new Empleado(1024, "Cocinero","Lelo", "garcía", "68634565", "987546324","lalo@gmail.com"));
-        listaCocineros.add(new Empleado(1024, "Cocinero", "Merlo", "Rodriguez", "12345678", "987435675", "merloro@gmail.com"));
-        listaMeseros.add(new Empleado(900, "Mesero","Homero", "de la iliada", "68634565", "987546324","homero_iliada@gmail.com"));
-        listaMeseros.add(new Empleado(3000,"Mesero","Adam Paul", "B C", "68634565", "987546324","adampaul@gmail.com"));
-        listaMeseros.add(new Empleado(3000,"Mesero","Lalo", "embalo", "68634565", "987546324","lalobalo@gmail.com"));
-        listaCajeros.add(new Empleado(1024, "Cajero","Lucho", "barrios", "68634565", "987546324","lucho_b@gmail.com"));
-        listaCajeros.add(new Empleado(1024, "Cajero","Reyna", "escalante", "68634565", "987546324","reyna_lante@gmail.com"));
-        listaCajeros.add(new Empleado(1024, "Cajero","Lucia", "merlina", "68634565", "987546324","luchaMer_b@gmail.com"));
+        listaClientes.add(new Cliente(22121,"Perico", "de los palotes", "68635652", "987546324","perico@gmail.com"));
+        listaClientes.add(new Cliente(32312,"Fulano", "de tal", "68634652", "987546324","fulano@gmail.com"));
+        listaClientes.add(new Cliente(63442,"Anita", "la huerfanita", "68634562", "987546324","huerfanita@gmail.com"));
+        listaClientes.add(new Cliente(54231,"Don", "nadie", "68634565", "987546324","don_nadie@gmail.com"));
+        listaCocineros.add(new Empleado(43212, 1024.50, "Cocinero","Lelo", "garcía", "68634565", "987546324","lalo@gmail.com"));
+        listaCocineros.add(new Empleado(12312, 1024.50, "Cocinero","Merlo", "Rodriguez", "12345678", "987435675", "merloro@gmail.com"));
+        listaMeseros.add(new Empleado(12341, 900.90, "Mesero","Homero", "de la iliada", "68634565", "987546324","homero_iliada@gmail.com"));
+        listaMeseros.add(new Empleado(1232, 3000.90,"Mesero","Adam Paul", "B C", "68634565", "987546324","adampaul@gmail.com"));
+        listaMeseros.add(new Empleado(4355,3000.90,"Mesero","Lalo", "embalo", "68634565", "987546324","lalobalo@gmail.com"));
+        listaCajeros.add(new Empleado(231312, 1024.65, "Cajero","Lucho", "barrios", "68634565", "987546324","lucho_b@gmail.com"));
+        listaCajeros.add(new Empleado(23221, 1024.65, "Cajero","Reyna", "escalante", "68634565", "987546324","reyna_lante@gmail.com"));
+        listaCajeros.add(new Empleado(23131, 1024.65, "Cajero","Lucia", "merlina", "68634565", "987546324","luchaMer_b@gmail.com"));
     }
+    public void agregarAlistaCliente(Cliente e){
+        listaClientes.add(e);
+    }
+    public void agregarAlistaMeseros(Empleado e){
+        listaMeseros.add(e);
+    }
+    public void agregarAlistaCocineros(Empleado e){
+        listaCocineros.add(e);
+    }
+    public void agregarAlistaCajeros(Empleado e){
+        listaCajeros.add(e);
+    }
+    public void agregarAlistaVenta(Venta e){
+        listaVenta.add(e);
+    }
+
+    public double getCapital() {
+        return Capital;
+    }
+
+    public void setCapital(double Capital) {
+        this.Capital = this.Capital + Capital;
+    }
+    public ArrayList<Empleado> listaEmpleadoUnificado() {
+    ArrayList<Empleado> lista = new ArrayList<>();
+    lista.addAll(listaMeseros);
+    lista.addAll(listaCocineros);
+    lista.addAll(listaCajeros);
+    return lista;
+    }
+
     public void exportarHistorialVentas() {
         if (listaVenta == null || listaVenta.isEmpty()) {
             JOptionPane.showMessageDialog(null, "No hay ventas registradas para exportar.");
@@ -102,7 +134,7 @@ public class Controller{
                 writer.newLine();
                 writer.newLine();
                 for (Empleado e : todos) {
-                    writer.write(e.getNombre()+";"+e.getApellido()+";"+e.getDNI()+";"+e.getTelefono()+";"+e.getEmail()+";"+e.getTipo()+";"+e.getSueldo()+";"+e.getAtendidos());
+                    writer.write(e.getID()+";"+e.getNombre()+";"+e.getApellido()+";"+e.getDNI()+";"+e.getTelefono()+";"+e.getEmail()+";"+e.getTipo()+";"+e.getSueldo()+";"+e.getAtendidos());
                     writer.newLine();
                 }
                 JOptionPane.showMessageDialog(null, "Empleados exportados correctamente a:\n" + archivo.getAbsolutePath());
@@ -126,9 +158,10 @@ public class Controller{
                 while (linea != null) {
                     if (!linea.trim().isEmpty()) {
                         String[] partes = linea.split(";");
-                        if (partes.length == 8) {
-                            Empleado emp = new Empleado(Double.parseDouble(partes[6]),partes[5],partes[0],partes[1],partes[2],partes[3],partes[4]);
-                            emp.setAtendidos(Integer.parseInt(partes[7]));
+                        if (partes.length < 10) {
+                            
+                            Empleado emp = new Empleado(Integer.parseInt(partes[0]),Double.parseDouble(partes[7]),partes[6],partes[1],partes[2],partes[3],partes[4],partes[5]);
+                            emp.setAtendidos(Integer.parseInt(partes[8]));
                         switch (emp.getTipo().toLowerCase()) {
                             case "mesero":
                             case "meseros":
@@ -156,19 +189,5 @@ public class Controller{
             }
         }
     }
-    public void agregarAlistaCliente(Cliente e){
-        listaClientes.add(e);
-    }
-    public void agregarAlistaMeseros(Empleado e){
-        listaMeseros.add(e);
-    }
-    public void agregarAlistaCocineros(Empleado e){
-        listaCocineros.add(e);
-    }
-    public void agregarAlistaCajeros(Empleado e){
-        listaCajeros.add(e);
-    }
-    public void agregarAlistaVenta(Venta e){
-        listaVenta.add(e);
-    }
+    
 }

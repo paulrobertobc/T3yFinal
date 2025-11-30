@@ -14,13 +14,15 @@ public class PantallaRegistroProductos extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(PantallaRegistroProductos.class.getName());
 
-    Inventario elInventario;
+    private Inventario elInventario;
+    public PantallaPrincipal principal;
     
     /**
      * Creates new form pantallaRegistroProductos
      */
     public PantallaRegistroProductos(Inventario elInventario, PantallaPrincipal principal) {
         initComponents();
+        this.principal = principal;
         setLocationRelativeTo(null);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         this.elInventario = elInventario;
@@ -171,7 +173,7 @@ public class PantallaRegistroProductos extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -197,6 +199,12 @@ public class PantallaRegistroProductos extends javax.swing.JFrame {
             Producto nuevo = new Producto(id, nombre, precio, categoria, stock);
             elInventario.agregar(nuevo);
             JOptionPane.showMessageDialog(this, nombre+" registrado correctamente.");
+            this.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosed(java.awt.event.WindowEvent e) {
+                principal.notificaciones(4);
+            }
+            });
             dispose();
         }catch(HeadlessException | NumberFormatException e){
             JOptionPane.showMessageDialog(null, "Hay fallas en el formato de entrada", "Error",JOptionPane.ERROR_MESSAGE);

@@ -1,6 +1,7 @@
 
 package view;
 
+import java.util.Random;
 import controller.Controller;
 import controller.ControllerSQL;
 import java.time.LocalDateTime;
@@ -33,7 +34,7 @@ public class RegistroVenta extends javax.swing.JFrame {
     public ArrayList<String> listaMientras = new ArrayList<>();
     public Venta ventaPrincipal;
     public double total = 0;
-    public Controller contro;
+    public Controller controlador;
     public PantallaPrincipal principal;
     public LocalDateTime ahora = LocalDateTime.now();
     public String recibo;
@@ -41,6 +42,7 @@ public class RegistroVenta extends javax.swing.JFrame {
     public Empleado mesero;
     public Empleado cajero;
     public Empleado cocinero;
+    private Random random = new Random();
     
     public RegistroVenta(Inventario in, Venta ventaPrincipal, Controller contro, PantallaPrincipal principal) {
         initComponents();
@@ -48,7 +50,7 @@ public class RegistroVenta extends javax.swing.JFrame {
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         this.in = in;
         this.ventaPrincipal = ventaPrincipal;
-        this.contro = contro;
+        this.controlador = contro;
         this.principal = principal;
         this.rnd = new Random();
         int ran = rnd.nextInt(contro.listaMeseros.size());
@@ -362,36 +364,29 @@ public class RegistroVenta extends javax.swing.JFrame {
                 }
             }
         }
-        Cliente nuevo = new Cliente(total,nombre, apellido, dni, telefono, email);
+        int id = crearID();
+        Cliente nuevo = new Cliente(id,total,nombre, apellido, dni, telefono, email);
         nuevo.agregarCompra(listaMientras);
-        contro.agregarAlistaCliente(nuevo);
+        controlador.agregarAlistaCliente(nuevo);
         Venta nuevaVenta = new Venta();
-        nuevaVenta.agregarVentayFecha(listaMientras, ahora, nuevo);
-        contro.agregarAlistaVenta(nuevaVenta);
-        
-        try {
-    ControllerSQL sql = new ControllerSQL();
-    
-    Cliente nuevoClienteBD = new Cliente(total, nombre, apellido, dni, telefono, email);
-JOptionPane.showMessageDialog(this, "   CASI!!!!!!!");
-    int ventaId = sql.registrarVentaConCliente(nuevoClienteBD, listaMientras, total);
-    
-
-    JOptionPane.showMessageDialog(this, "Venta registrada en BD con ID: " + ventaId);
-
-} catch (SQLException ex) {
-    JOptionPane.showMessageDialog(this, "Error al registrar en base de datos: " + ex.getMessage());
-    ex.printStackTrace();
-}
-
+        nuevaVenta.agregarVentayFecha(id,listaMientras, ahora, nuevo);
+        controlador.agregarAlistaVenta(nuevaVenta);
         listaMientras.clear();
         llenadoLista();
         mesero.atendidos = mesero.atendidos + 1;
         cajero.atendidos = cajero.atendidos + 1;
+        controlador.setCapital(total);
         if (checkRecibo.isSelected()){
             nuevaVenta.guardarBoleta();
         }
+        
         JOptionPane.showMessageDialog(this, "Venta registrada correctamente a " + nuevo.getNombre());
+        this.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosed(java.awt.event.WindowEvent e) {
+                principal.notificaciones(1);
+            }
+        });
         dispose();
     }//GEN-LAST:event_btnRegistrarVentaActionPerformed
 
@@ -416,6 +411,16 @@ JOptionPane.showMessageDialog(this, "   CASI!!!!!!!");
         llenadoLista();
     }//GEN-LAST:event_btnAgregarPedidoActionPerformed
 
+    public int crearID(){
+        int a_base = random.nextInt(90000);
+        int id = a_base + 10000;
+        boolean a = controlador.listaVenta.stream().anyMatch(p->p.getID() == id);
+        if (a == true){
+            crearID();
+        }
+        return id;
+    }
+    
     public void llenadoLista() {
         calcularTotalListaTemporal();
         modeloLista.clear();

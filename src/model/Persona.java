@@ -6,6 +6,7 @@ package model;
  * @author PAUL
  */
 public abstract class Persona {
+    protected int ID;
     protected String Nombre;
     protected String Apellido;
     protected String DNI;
@@ -15,12 +16,21 @@ public abstract class Persona {
     public Persona() {
     }
 
-    public Persona(String Nombre, String Apellido, String DNI, String Telefono, String Email) {
+    public Persona(int ID, String Nombre, String Apellido, String DNI, String Telefono, String Email) {
+        this.ID = ID;
         this.Nombre = Nombre;
         this.Apellido = Apellido;
         this.DNI = DNI;
         this.Telefono = Telefono;
         this.Email = Email;
+    }
+
+    public int getID() {
+        return ID;
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
     }
 
     public String getNombre() {

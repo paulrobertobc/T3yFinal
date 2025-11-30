@@ -18,11 +18,12 @@ public class EdicionEmpleado extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(EdicionEmpleado.class.getName());
 
-    ArrayList<Empleado> listaMeseros;
-    ArrayList<Empleado> listaCocineros;
-    ArrayList<Empleado> listaCajeros;
-    ArrayList<Empleado> listaT ;
-    String nombreTemporal;
+    private ArrayList<Empleado> listaMeseros;
+    private ArrayList<Empleado> listaCocineros;
+    private ArrayList<Empleado> listaCajeros;
+    private ArrayList<Empleado> listaT ;
+    private String nombreTemporal;
+    private PantallaPrincipal principal;
     
     
     /**
@@ -34,6 +35,7 @@ public class EdicionEmpleado extends javax.swing.JFrame {
      */
     public EdicionEmpleado(PantallaPrincipal principal, ArrayList<Empleado> listaMeseros, ArrayList<Empleado> listaCocineros, ArrayList<Empleado> listaCajeros) {
         initComponents();
+        this.principal = principal;
         setLocationRelativeTo(null);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         this.listaMeseros = listaMeseros;
@@ -106,6 +108,7 @@ public class EdicionEmpleado extends javax.swing.JFrame {
         cbElegirTipo = new javax.swing.JComboBox<>();
         jLabel8 = new javax.swing.JLabel();
         tfSueldo = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Editar");
@@ -170,6 +173,8 @@ public class EdicionEmpleado extends javax.swing.JFrame {
 
         jLabel8.setText("Sueldo");
 
+        jLabel9.setText("El ID no se puede cambiar");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -186,21 +191,17 @@ public class EdicionEmpleado extends javax.swing.JFrame {
                                 .addGap(50, 50, 50)
                                 .addComponent(rbCajeros))
                             .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(14, 14, 14)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                            .addGap(14, 14, 14)
-                                            .addComponent(jLabel1))
+                                        .addComponent(jLabel1)
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel3)
                                             .addComponent(jLabel2)))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(14, 14, 14)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel5)
-                                            .addComponent(jLabel4)
-                                            .addComponent(lbtipo)
-                                            .addComponent(jLabel8))))
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel4)
+                                    .addComponent(lbtipo)
+                                    .addComponent(jLabel8))
                                 .addGap(45, 45, 45)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(tfNombre)
@@ -209,8 +210,7 @@ public class EdicionEmpleado extends javax.swing.JFrame {
                                     .addComponent(tfTelefono)
                                     .addComponent(tfEmail)
                                     .addComponent(cbElegirTipo, 0, 150, Short.MAX_VALUE)
-                                    .addComponent(tfSueldo))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                    .addComponent(tfSueldo)))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(71, 71, 71)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -219,12 +219,15 @@ public class EdicionEmpleado extends javax.swing.JFrame {
                                 .addComponent(jLabel6)
                                 .addGroup(jPanel1Layout.createSequentialGroup()
                                     .addGap(6, 6, 6)
-                                    .addComponent(elComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                    .addComponent(elComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(92, 92, 92)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel9))))
                 .addContainerGap(25, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(102, 102, 102)
-                .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -268,9 +271,11 @@ public class EdicionEmpleado extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(tfSueldo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel9)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnEditar)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addGap(12, 12, 12))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -351,7 +356,7 @@ public class EdicionEmpleado extends javax.swing.JFrame {
                 a.setEmail(email);
                 a.setSueldo(sueldo);
                 JOptionPane.showMessageDialog(this, nombreTemporal+" fue actualizado");
-                dispose();
+                
                 if (rbMeseros.isSelected()){
                     if (selec.equalsIgnoreCase("Cajeros")){
                         listaCajeros.add(a);
@@ -385,6 +390,13 @@ public class EdicionEmpleado extends javax.swing.JFrame {
                     }
                     listaCajeros.remove(a);
                 }
+                this.addWindowListener(new java.awt.event.WindowAdapter() {
+                    @Override
+                    public void windowClosed(java.awt.event.WindowEvent e) {
+                        principal.notificaciones(3);
+                    }
+                });
+                dispose();
             }
             else{
                 JOptionPane.showMessageDialog(this, "No existe");
@@ -447,6 +459,7 @@ public class EdicionEmpleado extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lbtipo;
     private javax.swing.JRadioButton rbCajeros;

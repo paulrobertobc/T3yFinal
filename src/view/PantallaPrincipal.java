@@ -2,7 +2,11 @@
 package view;
 
 import controller.Controller;
+import controller.ControllerSQL;
 import database.ConexionSQL;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.Cliente;
@@ -23,9 +27,8 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     
     public PantallaPrincipal() {
         initComponents();
-        
+        prueba();
         llenadoTablasGeneral();
-        ConexionSQL.conectar();
     }
 
     @SuppressWarnings("unchecked")
@@ -60,6 +63,8 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         btnEditarProducto = new javax.swing.JMenu();
         btnEditarCliente = new javax.swing.JMenu();
         btnEditarEmpleado = new javax.swing.JMenu();
+        btnConectarBD = new javax.swing.JMenu();
+        btnAcercaDe = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Aplicación de gestion de ventas para la polleria El Buen Sabor");
@@ -67,17 +72,17 @@ public class PantallaPrincipal extends javax.swing.JFrame {
 
         tablaClientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Nombre", "Apellido", "DNI", "E-mail", "Telefono", "Total gastado"
+                "ID", "Nombre", "Apellido", "DNI", "E-mail", "Telefono", "Total gastado"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -125,17 +130,17 @@ public class PantallaPrincipal extends javax.swing.JFrame {
 
         tablaEmpleados.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Tipo", "Sueldo", "Nombre", "Apellido", "DNI", "E-mail", "Telefono", "Total atendidos"
+                "ID", "Tipo", "Sueldo", "Nombre", "Apellido", "DNI", "E-mail", "Telefono", "Total atendidos"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Double.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.Double.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -266,6 +271,22 @@ public class PantallaPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu2);
 
+        btnConectarBD.setText("Conectar BD");
+        btnConectarBD.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnConectarBDMouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(btnConectarBD);
+
+        btnAcercaDe.setText("Acerca De");
+        btnAcercaDe.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAcercaDeMouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(btnAcercaDe);
+
         setJMenuBar(jMenuBar1);
 
         pack();
@@ -348,6 +369,59 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         controlador.exportarEmpleados();
     }//GEN-LAST:event_btnExportarEmpleadosMouseClicked
 
+    private void btnConectarBDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConectarBDMouseClicked
+        // TODO add your handling code here:
+        //la bse de datos pes
+        try {
+        ControllerSQL ctrl = new ControllerSQL();
+
+        ctrl.listarProductos();
+        ctrl.listarClientes();
+        ctrl.listarEmpleados();
+        ctrl.listarVentas();
+        
+        llenadoTablasGeneral();
+
+        NotificacionAbajoDerecha.show(this, "Base de datos actualizada ✔");
+    } catch (Exception ex) {
+        JOptionPane.showMessageDialog(this, "Error al actualizar BD: " + ex.getMessage());
+    }
+    }//GEN-LAST:event_btnConectarBDMouseClicked
+
+    private void btnAcercaDeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAcercaDeMouseClicked
+        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(this, """
+                                            Proyecto final
+                                            Técnicas de Programación Orientada a Objetos
+                                            2025 -2
+                                            
+                                            Docente: Patricia Janet Uceda Martos.
+                                            
+                                            Integrantes:
+                                            -Darwin
+                                            -Paul
+                                            -Edgar
+                                            -Josep
+                                            
+                                                                                         Cajamarca, 2025""");
+    }//GEN-LAST:event_btnAcercaDeMouseClicked
+
+    public void notificaciones(int n){
+        
+        if (n == 1){
+            NotificacionAbajoDerecha.show(this, "Venta registrada correctamente.\n Stock actualizado.");
+        }
+        if (n == 2){
+            NotificacionAbajoDerecha.show(this, "Cliente actualizado correctamente.");
+        }
+        if (n == 3){
+            NotificacionAbajoDerecha.show(this, "Empleado actualizado correctamente.");
+        }
+        if (n == 4){
+            NotificacionAbajoDerecha.show(this, "Producto actualizado correctamente.");
+        }
+    }
+    
     
     public void llenadoTablasGeneral(){
         DefaultTableModel modelo1 = (DefaultTableModel) tablaClientes.getModel();
@@ -360,21 +434,49 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         modelo3.setRowCount(0);
         tablaEmpleados.setDefaultEditor(Object.class, null);
         for (Cliente c : controlador.listaClientes){
-            modelo1.addRow(new Object[]{c.getNombre(), c.getApellido(), c.getDNI(), c.getEmail(), c.getTelefono(), c.total});
+            modelo1.addRow(new Object[]{c.getID(),c.getNombre(), c.getApellido(), c.getDNI(), c.getEmail(), c.getTelefono(), c.total});
         }
         for(Producto p : elInventario.listaProductos){
             modelo2.addRow(new Object[]{p.getID(),p.getNombre(), p.getCategoria(), p.getPrecio(), p.getStock()});
         }
         for(Empleado e : controlador.listaMeseros){
-            modelo3.addRow(new Object[]{e.getTipo(),e.getSueldo(),e.getNombre(), e.getApellido(), e.getDNI(), e.getEmail(), e.getTelefono(), e.getAtendidos()});
+            modelo3.addRow(new Object[]{e.getID(),e.getTipo(),e.getSueldo(),e.getNombre(), e.getApellido(), e.getDNI(), e.getEmail(), e.getTelefono(), e.getAtendidos()});
         }
         for (Empleado e : controlador.listaCajeros){
-            modelo3.addRow(new Object[]{e.getTipo(),e.getSueldo(), e.getNombre(), e.getApellido(), e.getDNI(), e.getEmail(), e.getTelefono(), e.getAtendidos()});
+            modelo3.addRow(new Object[]{e.getID(),e.getTipo(),e.getSueldo(), e.getNombre(), e.getApellido(), e.getDNI(), e.getEmail(), e.getTelefono(), e.getAtendidos()});
         }
         for(Empleado e : controlador.listaCocineros){
-            modelo3.addRow(new Object[]{e.getTipo(),e.getSueldo(),e.getNombre(), e.getApellido(), e.getDNI(), e.getEmail(), e.getTelefono(), e.getAtendidos()});
+            modelo3.addRow(new Object[]{e.getID(),e.getTipo(),e.getSueldo(),e.getNombre(), e.getApellido(), e.getDNI(), e.getEmail(), e.getTelefono(), e.getAtendidos()});
         }
     }
+    
+    public void prueba(){
+        ControllerSQL ctrl = new ControllerSQL();
+        try {
+            Producto p = new Producto(12312, "Pollo a la brasa",  60.90, "Rostizados", 10);
+            ctrl.insertarProducto(p);
+            System.out.println("Producto insertado ID=" + p.getID());
+
+            for (Producto prod : ctrl.listarProductos()) {
+                System.out.println(prod.getID() + " - " + prod.getNombre() + " - S/ " + prod.getPrecio() + " - stock:" + prod.getStock());
+            }
+
+            Cliente c = new Cliente(5432, 0, "Juan", "Perez", "12345678", "123456789", "Juancitop@gmail.com");
+            ctrl.insertarCliente(c);
+            System.out.println("Cliente insertado ID=" + c.getID());
+
+            List<ControllerSQL.VentaItem> items = new ArrayList<>();
+            items.add(new ControllerSQL.VentaItem(p.getID(), p.getPrecio(), 2)); // 2 unidades
+            int idVenta = ctrl.registrarVenta(c.getID(), items, p.getPrecio() * 2);
+            System.out.println("Venta registrada ID=" + idVenta);
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+    
+    
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -398,6 +500,8 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenu btnAcercaDe;
+    private javax.swing.JMenu btnConectarBD;
     private javax.swing.JMenu btnEditarCliente;
     private javax.swing.JMenu btnEditarEmpleado;
     private javax.swing.JMenu btnEditarProducto;

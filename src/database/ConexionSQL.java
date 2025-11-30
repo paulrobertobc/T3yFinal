@@ -12,34 +12,20 @@ import java.sql.SQLException;
  * @author PAUL
  */
 
-
-
-
 public class ConexionSQL {
-
-    private static final String URL =
+    //me salen errorres por montones
+    private static final String URL = 
         "jdbc:sqlserver://localhost:1433;"
-      + "databaseName=RestauranteDB;"
-      + "encrypt=false;";
-    
-    private static final String USER = "sa";
-    private static final String PASS = "12345";
+        + "databaseName=SistemaVentasDB;"
+        + "encrypt=true;"
+        + "trustServerCertificate=true;";
 
-    public static Connection conectar() {
-        Connection cn = null;
-        try {
-            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-            cn = DriverManager.getConnection(URL, USER, PASS);
-            System.out.println("Conexión exitosa a SQL Server");
-        } catch (Exception e) {
-            System.out.println("Error al conectar: " + e.getMessage());
-            e.printStackTrace();
-        }
-        return cn;
+    private static final String USER = "sa";
+    private static final String PASS = "P@ssw0rd123";
+
+    public static Connection conectar() throws SQLException {
+        return DriverManager.getConnection(URL);
     }
 }
-
-
-
 
 

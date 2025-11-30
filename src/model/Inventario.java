@@ -20,13 +20,13 @@ public class Inventario implements Comportamiento<Producto>{
 
     public Inventario() {
         this.listaProductos = new ArrayList<>();
-        listaProductos.add(new Producto(2, "1 Pollo a la brasa", 65.00, "Rostizados",10 ));
-        listaProductos.add(new Producto(2,"1/2 Pollo a la brasa", 34.00, "Rostizados",20 ));
-        listaProductos.add(new Producto(2,"1/4 Pollo a la brasa", 12.00, "Rostizados",40 ));
-        listaProductos.add(new Producto(2,"Coca cola 3L", 12.00, "Bebidas",10 ));
-        listaProductos.add(new Producto(2,"1/4 Mostrito", 15.00, "Rostizados",10 ));
-        listaProductos.add(new Producto(2,"Bisteck a lo macho", 15.00, "Parrillas",10 ));
-        listaProductos.add(new Producto(2,"Coca cola 1/2 L", 3.5, "Bebidas",40 ));
+        listaProductos.add(new Producto(2232, "1 Pollo a la brasa", 65.00, "Rostizados",10 ));
+        listaProductos.add(new Producto(42312,"1/2 Pollo a la brasa", 34.00, "Rostizados",20 ));
+        listaProductos.add(new Producto(2123,"1/4 Pollo a la brasa", 12.00, "Rostizados",40 ));
+        listaProductos.add(new Producto(23321,"Coca cola 3L", 12.00, "Bebidas",10 ));
+        listaProductos.add(new Producto(32112,"1/4 Mostrito", 15.00, "Rostizados",10 ));
+        listaProductos.add(new Producto(897453,"Bisteck a lo macho", 15.00, "Parrillas",10 ));
+        listaProductos.add(new Producto(07213,"Coca cola 1/2 L", 3.5, "Bebidas",40 ));
     }
     
     @Override
