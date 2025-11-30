@@ -189,6 +189,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="tfNombre">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="we"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel2">
           <Properties>
@@ -196,6 +199,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="tfDni">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="12345678"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel4">
           <Properties>
@@ -203,8 +209,14 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="tfTelefono">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="123456789"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="tfEmail">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="qw@i.com"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="btnRegistrarVenta">
           <Properties>
@@ -298,6 +310,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="tfApellido">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="wee"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="Apellido">
           <Properties>

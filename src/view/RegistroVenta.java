@@ -2,6 +2,7 @@
 package view;
 
 import controller.Controller;
+import controller.ControllerSQL;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
@@ -13,6 +14,7 @@ import model.Producto;
 import model.Venta;
 import java.util.Random;
 import model.Empleado;
+import java.sql.SQLException;
 
 /**
  *
@@ -129,9 +131,17 @@ public class RegistroVenta extends javax.swing.JFrame {
 
         jLabel1.setText("Nombre");
 
+        tfNombre.setText("we");
+
         jLabel2.setText("DNI");
 
+        tfDni.setText("12345678");
+
         jLabel4.setText("E-mail");
+
+        tfTelefono.setText("123456789");
+
+        tfEmail.setText("qw@i.com");
 
         btnRegistrarVenta.setText("Registrar venta");
         btnRegistrarVenta.addActionListener(new java.awt.event.ActionListener() {
@@ -170,6 +180,8 @@ public class RegistroVenta extends javax.swing.JFrame {
         jLabel6.setText("Registrar venta a cliente");
 
         jLabel3.setText("Telefono");
+
+        tfApellido.setText("wee");
 
         Apellido.setText("Apellido");
 
@@ -356,6 +368,22 @@ public class RegistroVenta extends javax.swing.JFrame {
         Venta nuevaVenta = new Venta();
         nuevaVenta.agregarVentayFecha(listaMientras, ahora, nuevo);
         contro.agregarAlistaVenta(nuevaVenta);
+        
+        try {
+    ControllerSQL sql = new ControllerSQL();
+    
+    Cliente nuevoClienteBD = new Cliente(total, nombre, apellido, dni, telefono, email);
+JOptionPane.showMessageDialog(this, "   CASI!!!!!!!");
+    int ventaId = sql.registrarVentaConCliente(nuevoClienteBD, listaMientras, total);
+    
+
+    JOptionPane.showMessageDialog(this, "Venta registrada en BD con ID: " + ventaId);
+
+} catch (SQLException ex) {
+    JOptionPane.showMessageDialog(this, "Error al registrar en base de datos: " + ex.getMessage());
+    ex.printStackTrace();
+}
+
         listaMientras.clear();
         llenadoLista();
         mesero.atendidos = mesero.atendidos + 1;

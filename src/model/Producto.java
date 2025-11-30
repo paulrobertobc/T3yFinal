@@ -6,6 +6,7 @@ package model;
  * @author PAUL
  */
 public class Producto {
+    public int ID;
     public String Nombre;
     public double Precio;
     public String Categoria;
@@ -14,7 +15,8 @@ public class Producto {
     public Producto() {
     }
 
-    public Producto(String Nombre, double Precio, String Categoria, int Stock) {
+    public Producto(int ID, String Nombre, double Precio, String Categoria, int Stock) {
+        this.ID = ID;
         this.Nombre = Nombre;
         this.Precio = Precio;
         this.Categoria = Categoria;
@@ -52,4 +54,13 @@ public class Producto {
     public void setStock(int Stock) {
         this.Stock = Stock;
     }
+
+    public int getID() {
+        return ID;
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
+    }
+    
 }

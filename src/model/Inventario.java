@@ -20,13 +20,13 @@ public class Inventario implements Comportamiento<Producto>{
 
     public Inventario() {
         this.listaProductos = new ArrayList<>();
-        listaProductos.add(new Producto("1 Pollo a la brasa", 65.00, "Rostizados",10 ));
-        listaProductos.add(new Producto("1/2 Pollo a la brasa", 34.00, "Rostizados",20 ));
-        listaProductos.add(new Producto("1/4 Pollo a la brasa", 12.00, "Rostizados",40 ));
-        listaProductos.add(new Producto("Coca cola 3L", 12.00, "Bebidas",10 ));
-        listaProductos.add(new Producto("1/4 Mostrito", 15.00, "Rostizados",10 ));
-        listaProductos.add(new Producto("Bisteck a lo macho", 15.00, "Parrillas",10 ));
-        listaProductos.add(new Producto("Coca cola 1/2 L", 3.5, "Bebidas",40 ));
+        listaProductos.add(new Producto(2, "1 Pollo a la brasa", 65.00, "Rostizados",10 ));
+        listaProductos.add(new Producto(2,"1/2 Pollo a la brasa", 34.00, "Rostizados",20 ));
+        listaProductos.add(new Producto(2,"1/4 Pollo a la brasa", 12.00, "Rostizados",40 ));
+        listaProductos.add(new Producto(2,"Coca cola 3L", 12.00, "Bebidas",10 ));
+        listaProductos.add(new Producto(2,"1/4 Mostrito", 15.00, "Rostizados",10 ));
+        listaProductos.add(new Producto(2,"Bisteck a lo macho", 15.00, "Parrillas",10 ));
+        listaProductos.add(new Producto(2,"Coca cola 1/2 L", 3.5, "Bebidas",40 ));
     }
     
     @Override
@@ -85,7 +85,7 @@ public class Inventario implements Comportamiento<Producto>{
                             String categoria = partes[1].trim();
                             double precio = Double.parseDouble(partes[2].trim());
                             int stock = Integer.parseInt(partes[3].replace("Stock:", "").trim());
-                            Producto nuevo = new Producto(nombre, precio, categoria, stock);
+                            Producto nuevo = new Producto(2, nombre, precio, categoria, stock);
                             listaProductos.add(nuevo);
                         }
                     }

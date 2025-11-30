@@ -2,6 +2,7 @@
 package view;
 
 import controller.Controller;
+import database.ConexionSQL;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.Cliente;
@@ -22,7 +23,9 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     
     public PantallaPrincipal() {
         initComponents();
+        
         llenadoTablasGeneral();
+        ConexionSQL.conectar();
     }
 
     @SuppressWarnings("unchecked")
@@ -87,17 +90,17 @@ public class PantallaPrincipal extends javax.swing.JFrame {
 
         tablaProductosGeneral.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Nombre", "Categoria", "Precio", "Stock"
+                "ID", "Nombre", "Categoria", "Precio", "Stock"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Double.class, java.lang.Integer.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class, java.lang.Integer.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -360,7 +363,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             modelo1.addRow(new Object[]{c.getNombre(), c.getApellido(), c.getDNI(), c.getEmail(), c.getTelefono(), c.total});
         }
         for(Producto p : elInventario.listaProductos){
-            modelo2.addRow(new Object[]{p.getNombre(), p.getCategoria(), p.getPrecio(), p.getStock()});
+            modelo2.addRow(new Object[]{p.getID(),p.getNombre(), p.getCategoria(), p.getPrecio(), p.getStock()});
         }
         for(Empleado e : controlador.listaMeseros){
             modelo3.addRow(new Object[]{e.getTipo(),e.getSueldo(),e.getNombre(), e.getApellido(), e.getDNI(), e.getEmail(), e.getTelefono(), e.getAtendidos()});
