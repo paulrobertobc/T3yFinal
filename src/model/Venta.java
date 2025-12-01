@@ -1,4 +1,3 @@
-
 package model;
 
 import java.awt.HeadlessException;
@@ -21,6 +20,8 @@ public class Venta implements Comportamiento<ArrayList<String>>{
     public LocalDateTime fecha;
     public Cliente comprador;
     public int ID;
+    
+    private double total; 
 
     public Venta() {
         lasVentas = new ArrayList<>();
@@ -31,6 +32,14 @@ public class Venta implements Comportamiento<ArrayList<String>>{
         this.fecha = fecha;
         this.comprador = comprador;
         this.ID = ID;
+    }
+
+    public double getTotal() {
+        return total;
+    }
+
+    public void setTotal(double total) {
+        this.total = total;
     }
 
     public ArrayList<ArrayList<String>> getLasVentas() {
@@ -64,18 +73,22 @@ public class Venta implements Comportamiento<ArrayList<String>>{
     public void setFecha(LocalDateTime fecha) {
         this.fecha = fecha;
     }
+    
     public void agregarVentayFecha(int ID, ArrayList<String> listaVenta, LocalDateTime fecha, Cliente comprador){
         lasVentas.add(new ArrayList<>(listaVenta));
         this.fecha = fecha;
         this.comprador = comprador;
         this.ID = ID;
     }
+    
     public String getNombre(){
         return comprador.getNombre();
     }
+    
     public String getDNI(){
         return comprador.getDNI();
     }
+    
     @Override
     public void agregar(ArrayList<String> listaVenta) {
         lasVentas.add(new ArrayList<>(listaVenta));
@@ -89,12 +102,14 @@ public class Venta implements Comportamiento<ArrayList<String>>{
     public ArrayList<ArrayList<String>> getVentas() {
         return lasVentas;
     }
+    
     public void guardarBoleta() {
         try {
             JFileChooser explorador = new JFileChooser();
             explorador.setDialogTitle("Emitir boleta como...");
             explorador.setSelectedFile(new File("Boleta_" + fecha.format(DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss")) + ".txt"));
             int userSelection = explorador.showSaveDialog(null);
+            
             if (userSelection == JFileChooser.APPROVE_OPTION) {
                 File archivo = explorador.getSelectedFile();
                 try (BufferedWriter bw = new BufferedWriter(new FileWriter(archivo))) {
@@ -121,7 +136,7 @@ public class Venta implements Comportamiento<ArrayList<String>>{
                     }
                     bw.write("=============================");
                     bw.newLine();
-                    bw.write("Total: S/ " + comprador.total);
+                    bw.write("Total: S/ " + this.total); 
                     bw.newLine();
                     bw.write("Gracias por su compra.");
                     bw.newLine();

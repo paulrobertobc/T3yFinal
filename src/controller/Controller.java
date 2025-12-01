@@ -32,19 +32,8 @@ public class Controller{
         this.listaMeseros = new ArrayList<>();
         this.listaCocineros = new ArrayList<>();
         this.listaCajeros = new ArrayList<>();
-        this.listaVenta = new ArrayList<>();
-        listaClientes.add(new Cliente(22121,"Perico", "de los palotes", "68635652", "987546324","perico@gmail.com"));
-        listaClientes.add(new Cliente(32312,"Fulano", "de tal", "68634652", "987546324","fulano@gmail.com"));
-        listaClientes.add(new Cliente(63442,"Anita", "la huerfanita", "68634562", "987546324","huerfanita@gmail.com"));
-        listaClientes.add(new Cliente(54231,"Don", "nadie", "68634565", "987546324","don_nadie@gmail.com"));
-        listaCocineros.add(new Empleado(43212, 1024.50, "Cocinero","Lelo", "garcía", "68634565", "987546324","lalo@gmail.com"));
-        listaCocineros.add(new Empleado(12312, 1024.50, "Cocinero","Merlo", "Rodriguez", "12345678", "987435675", "merloro@gmail.com"));
-        listaMeseros.add(new Empleado(12341, 900.90, "Mesero","Homero", "de la iliada", "68634565", "987546324","homero_iliada@gmail.com"));
-        listaMeseros.add(new Empleado(1232, 3000.90,"Mesero","Adam Paul", "B C", "68634565", "987546324","adampaul@gmail.com"));
-        listaMeseros.add(new Empleado(4355,3000.90,"Mesero","Lalo", "embalo", "68634565", "987546324","lalobalo@gmail.com"));
-        listaCajeros.add(new Empleado(231312, 1024.65, "Cajero","Lucho", "barrios", "68634565", "987546324","lucho_b@gmail.com"));
-        listaCajeros.add(new Empleado(23221, 1024.65, "Cajero","Reyna", "escalante", "68634565", "987546324","reyna_lante@gmail.com"));
-        listaCajeros.add(new Empleado(23131, 1024.65, "Cajero","Lucia", "merlina", "68634565", "987546324","luchaMer_b@gmail.com"));
+        this.listaVenta = new ArrayList<>(); 
+
     }
     public void agregarAlistaCliente(Cliente e){
         listaClientes.add(e);

@@ -4,7 +4,6 @@ package view;
 import controller.Controller;
 import controller.ControllerSQL;
 import database.Conexion;
-import database.ConexionSQL;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -373,21 +372,41 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     private void btnConectarBDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConectarBDMouseClicked
         // TODO add your handling code here:
         //la bse de datos pes
-        Conexion.getConexion();
-        /*try {
-        ControllerSQL ctrl = new ControllerSQL();
+        try {
+            ControllerSQL db = new ControllerSQL(); 
 
-        ctrl.listarProductos();
-        ctrl.listarClientes();
-        ctrl.listarEmpleados();
-        ctrl.listarVentas();
-        
-        llenadoTablasGeneral();
+            elInventario.listaProductos = new ArrayList<>(db.listarProductos());
+            
+            controlador.listaClientes = new ArrayList<>(db.listarClientes());
+            
+            controlador.listaVenta = new ArrayList<>(db.listarVentas());
+            
+            List<Empleado> todosEmpleados = db.listarEmpleados();
+            
+            controlador.listaMeseros.clear();
+            controlador.listaCocineros.clear();
+            controlador.listaCajeros.clear();
+            
+            for (Empleado e : todosEmpleados) {
+                String cargo = e.getTipo().trim().toLowerCase();
+                
+                if (cargo.equals("mesero")) {
+                    controlador.listaMeseros.add(e);
+                } else if (cargo.equals("cocinero")) {
+                    controlador.listaCocineros.add(e);
+                } else if (cargo.equals("cajero")) {
+                    controlador.listaCajeros.add(e);
+                }
+            }
 
-        NotificacionAbajoDerecha.show(this, "Base de datos actualizada ✔");
-    } catch (Exception ex) {
-        JOptionPane.showMessageDialog(this, "Error al actualizar BD: " + ex.getMessage());
-    }*/
+            llenadoTablasGeneral();
+
+            JOptionPane.showMessageDialog(this, "Base de datos sincronizada correctamente ✔");
+            
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Error al traer datos de SQL: " + ex.getMessage());
+            ex.printStackTrace(); 
+        }
     }//GEN-LAST:event_btnConectarBDMouseClicked
 
     private void btnAcercaDeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAcercaDeMouseClicked
@@ -400,10 +419,10 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                                             Docente: Patricia Janet Uceda Martos.
                                             
                                             Integrantes:
-                                            -Darwin
-                                            -Paul
-                                            -Edgar
-                                            -Josep
+                                            -Darwin Ivan Acosta Altamirano
+                                            -Paul Roberto Becerra Cardenas
+                                            -Edgar Jhony Vargas Chavez
+                                            -Jhosep Villanueva Ñontol
                                             
                                                                                          Cajamarca, 2025""");
     }//GEN-LAST:event_btnAcercaDeMouseClicked
