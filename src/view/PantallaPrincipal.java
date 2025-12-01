@@ -3,6 +3,7 @@ package view;
 
 import controller.Controller;
 import controller.ControllerSQL;
+import database.Conexion;
 import database.ConexionSQL;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -27,7 +28,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     
     public PantallaPrincipal() {
         initComponents();
-        prueba();
+        Conexion.getConexion();
         llenadoTablasGeneral();
     }
 
@@ -372,7 +373,8 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     private void btnConectarBDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConectarBDMouseClicked
         // TODO add your handling code here:
         //la bse de datos pes
-        try {
+        Conexion.getConexion();
+        /*try {
         ControllerSQL ctrl = new ControllerSQL();
 
         ctrl.listarProductos();
@@ -385,7 +387,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         NotificacionAbajoDerecha.show(this, "Base de datos actualizada ✔");
     } catch (Exception ex) {
         JOptionPane.showMessageDialog(this, "Error al actualizar BD: " + ex.getMessage());
-    }
+    }*/
     }//GEN-LAST:event_btnConectarBDMouseClicked
 
     private void btnAcercaDeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAcercaDeMouseClicked
