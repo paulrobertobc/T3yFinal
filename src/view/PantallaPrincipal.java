@@ -398,10 +398,10 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                                             Docente: Patricia Janet Uceda Martos.
                                             
                                             Integrantes:
-                                            -Darwin
-                                            -Paul
-                                            -Edgar
-                                            -Josep
+                                            -Darwin Ivan Acosta Altamirano
+                                            -Paul Roberto Becerra Cardenas
+                                            -Edgar Jhony Vargas Chavez
+                                            -Jhosep Villanueva Ñontol
                                             
                                                                                          Cajamarca, 2025""");
     }//GEN-LAST:event_btnAcercaDeMouseClicked
